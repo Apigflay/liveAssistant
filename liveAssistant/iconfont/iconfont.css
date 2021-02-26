@@ -1,0 +1,46 @@
+@font-face {
+  font-family: 'iconfont';  /* project id 2222434 */
+  src: url('https://at.alicdn.com/t/font_2222434_ax34q4pqfyk.eot');
+  src: url('https://at.alicdn.com/t/font_2222434_ax34q4pqfyk.eot?#iefix') format('embedded-opentype'),
+  url('https://at.alicdn.com/t/font_2222434_ax34q4pqfyk.woff2') format('woff2'),
+  url('https://at.alicdn.com/t/font_2222434_ax34q4pqfyk.woff') format('woff'),
+  url('https://at.alicdn.com/t/font_2222434_ax34q4pqfyk.ttf') format('truetype'),
+  url('https://at.alicdn.com/t/font_2222434_ax34q4pqfyk.svg#iconfont') format('svg');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-tuichu:before {
+  content: "\e62d";
+}
+
+.icon-tuichu1:before {
+  content: "\e602";
+}
+
+.icon-f14:before {
+  content: "\e601";
+}
+
+.icon-eye:before {
+  content: "\e74f";
+}
+
+.icon-yanjing3:before {
+  content: "\e6f3";
+}
+
+.icon-iconfontjiantou-copy-copy:before {
+  content: "\e600";
+}
+
+.icon-guzhang:before {
+  content: "\e6a3";
+}
+

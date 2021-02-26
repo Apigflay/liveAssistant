@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="./assets/bootstrap.min.css">
+    <link rel="stylesheet" href="./index.css">
+    <title>Agora RTS Example</title>
+
+    <script src="./AgoraRTC.js"></script>
+    <script src="./AgoraRTS.js"></script>
+  </head>
+  <body>
+
+    <div class="container" id="app">
+      <h1>Agora RTS Example</h1>
+      <div class="container" id="joinchannel">
+        <form id="form">
+        <div class="form-group">
+          <label>AppID*</label>
+          <input class="form-control" id="key" type="text" size="36" required></input>
+        </div>
+        <div class="form-group">
+          <label>Channel*</label>
+          <input class="form-control" id="channel" type="text" size="36" required></input>
+        </div>
+        <div class="form-group">
+          <label>Token</label>
+          <input class="form-control" id="token" type="text" size="36"></input>
+        </div>
+        <div class="form-group">
+          <label>UID</label>
+          <input class="form-control" id="uid" type="text" size="36"></input>
+        </div>
+        <button class="btn btn-primary" type="submit" id="joinchannel_btn">JoinChannel</button>
+        </form>
+      </div>
+      <div class="container" id="remote-streams">
+        <h2>Remote Streams</h2>
+        <div id="remote-streams__slot"></div>
+      </div>
+      <!--
+      <div class="container" id="local-stream">
+        <h2>Local Stream</h2>
+        <div id="local-stream__slot"></div>
+      </div>
+      -->
+    </div>
+
+    <div class="notsupport-wrapper">
+      <p class="notsupport-wrapper__wran">您的浏览器无法访问摄像头/麦克风</p>
+      <p class="notsupport-wrapper__wran">请点击右上角或者长按复制网址后使用 <span></span> 打开</p>
+
+      <p class="notsupport-location"></p>
+
+      <button class="btn btn-secondary">不发布继续使用</button>
+    </div>
+
+    <script src="./assets/jquery-3.3.1.slim.min.js"></script>
+    <script src="./assets/bootstrap.min.js"></script>
+    <script>
+      ;(function () {
+        var src = '//cdn.bootcss.com/eruda/1.5.2/eruda.min.js';
+        if (!/eruda=true/.test(window.location) && localStorage.getItem('active-eruda') != 'true') return;
+        document.write('<scr' + 'ipt src="' + src + '"></scr' + 'ipt>');
+        document.write('<scr' + 'ipt>eruda.init();</scr' + 'ipt>');
+      })();
+    </script>
+    <script src="./index.js"></script>
+  </body>
+</html>
