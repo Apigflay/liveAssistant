@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	https://www.bilibili.com/video/av38994467
+</body>
+<script>
+	var client = AgoraRTC.createClient({mode: 'live', codec: "h264"});
+
+	client.init(<APPID>, function () {
+	  console.log("AgoraRTC client initialized");
+	}, function (err) {
+	  console.log("AgoraRTC client init failed", err);
+	});
+
+
+	localStream.init(function() {
+	  console.log("getUserMedia successfully");
+	  localStream.play('agora_local');
+	}, function (err) {
+	  console.log("getUserMedia failed", err);
+	});
+
+
+	client.join(<TOKEN_OR_KEY>, <CHANNEL_NAME>, <UID>, function(uid) {
+	  console.log("User " + uid + " join channel successfully");
+	}, function(err) {
+	  console.log("Join channel failed", err);
+	});
+
+	client.leave(function () {
+	  console.log("Leave channel successfully");
+	}, function (err) {
+	  console.log("Leave channel failed");
+	});
+</script>
+
+
+</html>
