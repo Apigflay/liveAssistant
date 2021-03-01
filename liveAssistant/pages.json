@@ -20,6 +20,17 @@
             }
             
         }
+        ,{
+            "path" : "pages/video/video",
+            "style" :                                                                                    
+            {
+                "app-plus": {
+                                  "titleNView": false
+                },
+                "navigationStyle":"custom"
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

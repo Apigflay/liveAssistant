@@ -14,3 +14,19 @@ http://pili-live-hdl.miaobolive.com/live/e28dfcb349c5b0ae3668c1589760a540.flv
 http://pili-live-hdl.miaobolive.com/live/96eb0a41f874577c3b179084e8bef540.flv
 http://pili-live-hdl.miaobolive.com/live/e98b1b38ca6498fb373f436e219da540.flv
 http://pili-live-hdl.miaobolive.com/live/a16b02b8b994d09a1792e57c1a316540.flv
+
+
+
+
+声网  id    3668ac50c1e34ab38a8830e9f8eb15ac
+App 密钥     7c59d14dba5b43afaf89be79223c9958    
+
+token  0063668ac50c1e34ab38a8830e9f8eb15acIAAzCctC4fzvWpK38pz/wBD/nuQQF9ZiVE2XkIXLraDdLtJjSIgAAAAAEADqgOQ9m889YAEAAQCbzz1g
+
+频道号 123
+
+token1
+0063668ac50c1e34ab38a8830e9f8eb15acIAAwbjDxGJ5UcvTnmSnqG9lDoouE/ixmm9IoekFuKZ+/mSwUiesAAAAAEADqgOQ98+I9YAEAAQDz4j1g
+
+频道号  1231
+
