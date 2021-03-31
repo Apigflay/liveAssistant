@@ -80,7 +80,24 @@
         "template" : "h5index.html",
         "router" : {
             "mode" : "hash",
-            "base" : "/h5/"
+            "base" : "./"
+        },
+        // "devServer" : {
+        //     "https" : false
+        // },
+        "devServer" : {
+            //"port": 8080,
+            "disableHostCheck" : true,
+            "proxy" : {
+                "/api" : {
+                    //http://173.248.234.214:9008  http://192.168.1.102:9008
+                    "target" : "http://173.248.234.214:9008",
+                    "secure" : false,
+                    "pathRewrite" : {
+                        "^/api" : ""
+                    }
+                }
+            }
         }
     }
 }

@@ -126,6 +126,27 @@ export function decrypt(word){
 	return CryptoJS.enc.Utf8.stringify(decrypt).toString();
 }
 /**
+ * 获取语言 --api
+ * @param 无
+ * @returns {*}
+ */
+export function NavLanguage(){//0 zh 中  1 en 英  2 vi 越  3 th 泰 4 tc 繁体中文
+	var lang= window.navigator.language.substr(0,2);
+	if(lang == 'zh'){
+	  return 0;
+	}else if(lang == 'en'){
+	  return 1;
+	}else if(lang == 'vi'){
+	  return 2;
+	}else if(lang == 'th'){
+	  return 3;
+	}else if(lang == 'tc'){
+	  return 4;
+	}else{
+	  return 0;
+	}
+}
+/**
  * 跳转 --api
  * @param word
  * @returns {*}
@@ -447,29 +468,21 @@ export function sendD204(content) {//20004 B读取消息后，告诉服务端已
   * @param Blob
   * @returns [string]
   */
- export function work(data) {// someErr
- 	var fileReader = new FileReader();
- 	fileReader.onload = function (progressEvent) {
- 		var arrayBuffer = this.result; // arrayBuffer即为blob对应的arrayBuffer
- 		var HeadRecv = new Uint32Array(arrayBuffer, 0, 3);
- 		var strArray = new Uint8Array(arrayBuffer, 12, HeadRecv[0] - 12 - 1);
- 		var str = new TextDecoder().decode(strArray);//{"code":-1,"error":"用户名或密码错误"}
- 		// console.log(HeadRecv[1],JSON.parse(str))
-		//to do
- 		console.log(HeadRecv[1])
- 		console.log(JSON.parse(str))
- 	};
- 	fileReader.readAsArrayBuffer(data);
+ export function Do(data) {// 
+	var arrayBuffer =data;
+	var HeadRecv = new Uint32Array(arrayBuffer, 0, 3);
+	var strArray = new Uint8Array(arrayBuffer, 12, HeadRecv[0] - 12 - 1);
+	var str = new TextDecoder().decode(strArray);
+	webMsg(HeadRecv[1],JSON.parse(str))
  }
- 
- 
  
  /**
   * get（）--api
   * @param obj 参数 url 地址
   * @returns {*}
   */
- export function Do(aaaa){
+ export function Do1(aaaa){
+	 console.log(aaaa)
 	 var resultData = {
 	 	code:null,
 	 	msg:null
@@ -477,6 +490,7 @@ export function sendD204(content) {//20004 B读取消息后，告诉服务端已
 	 var fileReader = new FileReader();
 	 fileReader.onload = function (progressEvent) {
 	 	var arrayBuffer = this.result; // arrayBuffer即为blob对应的arrayBuffer
+		console.log(arrayBuffer)
 	 	var HeadRecv = new Uint32Array(arrayBuffer, 0, 3);
 	 	var strArray = new Uint8Array(arrayBuffer, 12, HeadRecv[0] - 12 - 1);
 	 	var str = new TextDecoder().decode(strArray);//{"code":-1,"error":"用户名或密码错误"}

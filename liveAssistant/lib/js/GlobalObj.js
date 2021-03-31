@@ -1,8 +1,8 @@
 let tagArry =[];
-let urlPoint ='http://173.248.234.215:86';
-// let urlPoint ='/api';
-let md5key='HASn-71AS-K812';
-let urlSocketPoint ='ws://192.168.1.100:17400';
+let urlPoint ='http://173.248.234.214:9008';//测试地址 http://173.248.234.214:9008 http://192.168.1.102:9008
+// let urlPoint ='/api';//测试地址 http://173.248.234.214:9008
+let md5key='@#live6HW_80&!';
+let urlSocketPoint ='ws://173.248.234.214:17000';//192.168.1.102    ws://173.248.234.214:17000 127.0.0.1
 export default
 {
   tagArry,//tag数组 test

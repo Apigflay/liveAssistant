@@ -3,7 +3,7 @@
 		<div id="remote-user" class="remote-user"></div>
 		<div class="videoInfo">
 			<view class="title">
-				声网
+				
 			</view>
 			AppID:
 			<input v-model="appid" class="appId" type="text" value="" placeholder="请输入AppID" />
@@ -21,22 +21,106 @@
 </template>
 
 <script>
-	import AgoraRTC from '../../lib/agora/AgoraRTC_N-4.3.0.js';
+	// import AgoraRTC from '../../lib/agora/AgoraRTC_N-4.3.0.js';
 	export default {
 		data() {
 			return {
-				appid: '3668ac50c1e34ab38a8830e9f8eb15ac',
-			    token: '0063668ac50c1e34ab38a8830e9f8eb15acIAAwbjDxGJ5UcvTnmSnqG9lDoouE/ixmm9IoekFuKZ+/mSwUiesAAAAAEADqgOQ98+I9YAEAAQDz4j1g',
-				channel: '1231',
+				appid: '03ac21a052434a9792bec6223b6fbeb0',//03ac21a052434a9792bec6223b6fbeb0
+			    token: '00603ac21a052434a9792bec6223b6fbeb0IAAeQjsy+BbURFCY/ohYziu8LuOh0wKsg3WuHqTHHvXn9T1Ra00AAAAAEADYCUcovOtSYAEAAQC761Jg',//
+				channel: '111',//
 				uid:null,
 				muted:true,
 			};
 		},
 		onReady() {
-			this.joinRoom()
+			// this.joinRoom()
 		},
 		methods:{
 			joinRoom:function(){
+				// 处理错误的函数
+				var handleError = function(err){
+				        console.log("Error: ", err);
+				};
+				
+				// 定义远端视频画面的容器
+				var remoteContainer = document.getElementById("remote-user");
+				
+				// 将视频流添加到远端视频画面容器的函数
+				function addVideoStream(elementId){
+				        // 给每个流创建一个 div
+				        var streamDiv = document.createElement("div");
+				        // 将 elementId 分配到 div
+				        streamDiv.id = elementId;
+				        // 处理镜像问题
+				        streamDiv.style.transform = "rotateY(180deg)";
+				        // 将 div 添加到容器
+				        remoteContainer.appendChild(streamDiv);
+				};
+				
+				console.log(AgoraRTC)//播放器
+				console.log(AgoraRTC.checkSystemRequirements())//是否支持
+				// 创建并初始化一个用于控制通话的客户端对象
+				var client = AgoraRTC.createClient({ mode: "rtc", codec: "vp8" });
+				console.log(client)
+				// AgoraRTC.init(this.appid);
+				
+				//设置用户角色 role 的值可以是 "host" 或者 "audience".
+				// client.setClientRole('audience');
+				
+				var uid = client.join(this.appid,this.channel,this.token,this.uid);
+				console.log(uid)
+				
+				
+				client.on("user-published", async (user, mediaType) => {//user-published
+					console.log('11111')
+					console.log(user)
+					console.log('2222'+mediaType)
+				  await client.subscribe(user, mediaType);
+				  if (mediaType === "video") {
+				    console.log("subscribe video success");
+				    user.videoTrack.play(document.getElementById('remote-user'));
+					// console.log(document.getElementsByClassName('uni-video-video'))
+					// user.videoTrack.play(document.getElementsByClassName('uni-video-video')[0])
+					
+					
+					// document.getElementById('remote-user')
+				  }
+				  if (mediaType === "audio") {
+				    console.log("subscribe audio success");
+				    user.audioTrack.play();
+				  }
+				})
+				
+				
+				
+				
+				//join(appid: string, channel: string, token: string | null, uid?: UID | null): Promise<UID>
+				// var uid = client.join(this.appid,this.channel,this.token,this.uid);
+				// console.log(uid)
+				// // 订阅远端视频
+				// client.on("stream-added", async (user, mediaType) => {//user-published
+				// 	console.log('11111')
+				// 	console.log(user)
+				// 	console.log('2222'+mediaType)
+				//   await client.subscribe(user, mediaType);
+				//   if (mediaType === "video") {
+				//     console.log("subscribe video success");
+				//     user.videoTrack.play(document.getElementById('remote-user'));
+				// 	// console.log(document.getElementsByClassName('uni-video-video'))
+				// 	// user.videoTrack.play(document.getElementsByClassName('uni-video-video')[0])
+					
+					
+				// 	// document.getElementById('remote-user')
+				//   }
+				//   if (mediaType === "audio") {
+				//     console.log("subscribe audio success");
+				//     user.audioTrack.play();
+				//   }
+				// })
+				
+
+			},
+			joinRoom1:function(){
 				console.log(AgoraRTC)
 				console.log(AgoraRTC.checkSystemRequirements())
 				// create Agora client
@@ -44,8 +128,9 @@
 				// 加入channel
 				//join(appid: string, channel: string, token: string | null, uid?: UID | null): Promise<UID>
 				var uid = client.join(this.appid,this.channel,this.token,this.uid);
+				console.log(uid)
 				// 订阅远端视频
-				client.on("user-published", async (user, mediaType) => {
+				client.on("user-published", async (user, mediaType) => {//user-published
 					console.log('11111')
 					console.log(user)
 					console.log('2222'+mediaType)
@@ -73,7 +158,7 @@
 				
 			},
 			findVideo:function(){
-				
+				this.joinRoom()
 			}
 		}
 	}

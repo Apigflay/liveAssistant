@@ -1,6 +1,15 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
+		    "path" : "pages/beginShow/beginShow",//开播
+		    "style" : {
+				"app-plus": {
+				                  "titleNView": false
+				},
+				"navigationStyle":"custom"
+			}
+		},
+		{
 			"path": "pages/index/index",
 			"style": {
 				"app-plus": {
@@ -31,11 +40,40 @@
             }
             
         }
+        ,{
+            "path" : "pages/websocket/websocket",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/showEnd/showEnd",//结束
+            "style" : {
+				"app-plus": {
+				                  "titleNView": false
+				},
+				"navigationStyle":"custom"
+			}
+        }
+        ,{
+            "path" : "pages/liveRoom/liveRoom",//直播
+            "style" : {
+				"app-plus": {
+				                  "titleNView": false
+				},
+				"navigationStyle":"custom"
+			}
+        }
     ],
 	"globalStyle": {
-		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "uni-app",
-		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
+		"navigationBarTextStyle": "black",//导航栏标题颜色及状态栏前景颜色，仅支持 black/white
+		"navigationBarTitleText": "uni-app",//导航栏标题文字内容
+		"navigationBarBackgroundColor": "#F8F8F8",//导航栏背景颜色（同状态栏背景色）
+		"backgroundColor": "#F8F8F8",//窗口的背景色
+		"onReachBottomDistance":50,//页面上拉触底事件触发时距页面底部距离，单位只支持px，详见页面生命周期
+		"scrollIndicator":"none"//
 	}
 }

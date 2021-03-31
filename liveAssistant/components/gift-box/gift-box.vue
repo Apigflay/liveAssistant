@@ -15,12 +15,12 @@
 					<swiper class="swiper" :current="current" :circular="circular" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration" @animationfinish="getChangeMsg">
 						<swiper-item v-for="(item,index) in GiftsData" :key="index" :id="index">
 							<view class="swiper-item uni-bg-green">
-								<view class="listPer" :class="acGiftid==item1.giftId?'aclistPer':''" v-for="(item1,index1) in item.list" :key="index1" :id="index1" @click.stop="sendPic(item1.giftId,$event)">
+								<view class="listPer" :class="acGiftid==item1.giftid?'aclistPer':''" v-for="(item1,index1) in item.list" :key="index1" :id="index1" @click.stop="sendPic(item1.giftid,$event)">
 									<view class="gift_img"><image class="photo" :src="item1.icon"></image></view>
 									<view class="gift_name">{{item1.name}}</view>
 									<view class="gift_num">
 										<!-- <image class="img" src="../../static/imgs/goldM1.png"></image> -->
-										<text class="text">{{item1.price}}</text>
+										<!-- <text class="text">{{item1.price}}</text> -->
 									</view>
 								</view>
 								
@@ -32,9 +32,11 @@
 				<!-- 赠送 -->
 				<view class="giftSendArea">
 					<view class="cashArea">
-						<text class="cash">CAT币: </text>
+						<text class="cash">送给</text>
+						<text class="num">{{anchorLoginData.signature}}</text>
+						<!-- <text class="cash">CAT币: </text>
 						<text class="num">555</text>
-						<text class="pay"  @click.stop="goBackPages(2)">充值</text>
+						<text class="pay"  @click.stop="goBackPages(2)">充值</text> -->
 					</view>
 					<text class="send" @click.stop="sendGiftBtn">赠送</text>
 				</view>
@@ -51,17 +53,22 @@
 			return {
 				// liwu
 				GiftsData:[
-					{id:0,tabName:'热门',list:[{giftId:1,name:'花花',icon:'../../static/imgs/gift.png',price:'123'},{giftId:2,name:'花花',icon:'../../static/imgs/gift.png',price:'123'},{giftId:3,name:'花花',icon:'../../static/imgs/gift.png',price:'123'},{giftId:4,name:'花花',icon:'../../static/imgs/gift.png',price:'123'},{giftId:5,name:'花花',icon:'../../static/imgs/gift.png',price:'123'},{giftId:6,name:'花花',icon:'../../static/imgs/gift.png',price:'123'},{giftId:7,name:'花花',icon:'../../static/imgs/gift.png',price:'123'}]},
-					{id:1,tabName:'普通',list:[{giftId:11,name:'花花',icon:'../../static/imgs/gift.png',price:'123'}]},
-					{id:2,tabName:'奢华',list:[{giftId:21,name:'花花',icon:'../../static/imgs/gift.png',price:'123'}]}],//tab 
-				acGiftid:null,//当前选中的礼物id 
+					{id:0,tabName:'礼物',list:[]}],//tab 
+				acGiftid:-1,//当前选中的礼物id 
 				indicatorDots: false,//指示点显示
 				autoplay: false,//自动播放
 				interval: 2000,//间隔
 				duration: 500,//动画时长
 				circular:true,//衔接
 				current:0,//当前activity的滑块
+				anchorLoginData:null,//主播信息
 			};
+		},
+		created() {
+			console.log(this.$store.getters['AllallGiftData'])
+			this.GiftsData[0].list=this.$store.getters['AllallGiftData'];
+			console.log(this.GiftsData)
+			this.anchorLoginData=this.$store.getters['AllallAnchorLoginData'];
 		},
 		methods:{
 			goBackPages:function(index){//1 关闭
@@ -79,13 +86,16 @@
 				this.current = e.detail.current
 			},
 			sendPic:function(giftId,event){//礼物图片点击
-				console.log(event.currentTarget.id)
 				this.acGiftid=giftId;
-				console.log(giftId)
 			},
 			sendGiftBtn:function(){
-				console.log(this.acGiftid)
-				this.$emit('sendGift',this.acGiftid)
+				if(this.acGiftid==-1){
+					
+				}else{
+					console.log(this.acGiftid)
+					this.$emit('sendGift',this.acGiftid)
+					this.acGiftid=-1;
+				}
 			},
 
 		}
@@ -102,7 +112,7 @@
 	// position: relative;
 	.giftArea{//礼物区域
 		position: absolute;
-		z-index: 2;
+		z-index: 11;
 		right:0rpx;
 		background: #000;
 		bottom:0rpx;
@@ -126,8 +136,8 @@
 						flex-wrap: wrap;
 						overflow-y: scroll;
 						.listPer{
-							width: 240rpx;
-							// height: 160rpx;
+							width: 175rpx;//240
+							height: 180rpx;
 							color: #fff;
 							margin-top: 20rpx;
 							margin-bottom: 8rpx;
@@ -136,11 +146,11 @@
 							align-items: center;
 							margin-left: 10rpx;
 							.gift_img{ // 礼物图片div大小
-								width: 140rpx;
-								height: 140rpx;
+								width: 100rpx;//140
+								height: 100rpx;
 								.photo{
-									width: 140rpx;
-									height: 140rpx;
+									width: 100rpx;
+									height: 100rpx;
 								}
 							}
 							.gift_name{
